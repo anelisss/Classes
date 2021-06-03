@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise finally example</title>
+    <style>
+        #text-area {
+            display: block;
+            width: 100%;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <button id="text-button">Get Students' Info</button>
+    <textarea id="text-area" rows="35"></textarea>
+    <script>
+        let button = document.getElementById("text-button");
+        let textArea = document.getElementById("text-area");
+        button.addEventListener("click", function () {
+            getInfo();
+        });
+        async function getInfo() {
+            try {
+                let response = await fetch('file:///C:/Users/40726/Documents/VS%20Code%20-%20Exercitii/Tema%20Advanced%20JS%20-%20Modul%201%20-%20Clase/classes.html');
+                if (response.status !== 200) {
+                    throw new Error("Error while reading file.");
+                }
+                let text = await response.text();
+                textArea.innerHTML = text;
+            } catch (error) {
+                textArea.innerHTML = 'Fetch problem: ' + error.message;
+            }
+        }
+    </script>
+</body>
+
+</html>
