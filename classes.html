@@ -13,29 +13,36 @@
             constructor(name, address, phone, course) {
                 this.name = name;
                 this.address = address;
-                this._phone = phone;
+                this.phone = phone;
                 this.course = course;
             }
 
             getInfo() {
                 return "Name: " + this.name + "\n" +
                 "Address: " + this.address + "\n" +
-                "Phone: " + this._phone + "\n" +
+                "Phone: " + this.phone + "\n" +
                 "Course: " + this.course
             }
         }
 
-        let student1 = new Student("John Marston", "Union Street 64", "0723098763", "English");
-        let student2 = new Student("Charles Smith", "Shirley Court 82", "0756000121", "Biology");
-        let student3 = new Student("Lenny Strauss", "Bishop Avenue 77", "0744456366", "History");
+        let student1 = new Student("Ebonie Rangel", "7175 Yukon Street", "(" + 507 + ")" + "833" + "-" + "3567", "Geography");
+        let student2 = new Student("Keenan Ellwood", "2 Elm Lane", "(" + 894 + ")" + "831" + "-" + "6482", "History");
+        let student3 = new Student("Kailan Smart", "795 Harvard Street", "(" + 925 + ")" + "856" + "-" + "5167", "Biology");
+        let student4 = new Student("Kaydan Hirst", "9 East Lakeview Ave.", "(" + 939 + ")" + "812" + "-" + "6141", "Programming");
+        let student5 = new Student("Isabelle Prentice", "700 Rock Maple St.", "(" + 899 + ")" + "875" + "-" + "8627", "Math");
 
         let student1Info = student1.getInfo();
         let student2Info = student2.getInfo();
         let student3Info = student3.getInfo();
+        let student4Info = student3.getInfo();
+        let student5Info = student3.getInfo();
 
         console.log(student1Info);
         console.log(student2Info);
         console.log(student3Info);
+        console.log(student4Info);
+        console.log(student5Info);
+
 
         </script>
 </body>
