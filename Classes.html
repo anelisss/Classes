@@ -37,6 +37,7 @@
                     "Phone: " + this.phone + "\n" +
                     "Course: " + this.course
             }
+            
         }
      
              let student1 = new Student("Ebonie Rangel", "7175 Yukon Street", "(" + 507 + ")" + "833" + "-" + "3567", "Geography");
@@ -66,17 +67,24 @@
                     throw new Error("Error while reading file");
                 }
 
+                var lines = textArea.value.split('\n');
                 let text = await response.text();
 
-                var lines = textArea.value.split('\n');
+                let name = "Name: ";
+                let address = "Address: ";
+                let phone = "Phone: ";
+                let course = "Course: ";
+
                 for (var i = 0; i < lines.length; i++) {
-                    textArea.innerHTML = "Name: " + lines[0];
+                    textArea.innerHTML = name + text.split("\n")[0] + address + text.split("\n")[1] + phone + text.split("\n")[2]
+                    + course + text.split("\n")[3];
                 }
 
             } catch (err) {
                 textArea.innerHTML = 'Problem occurred: ' + err.message;
             }
         }
+
     </script>
 </body>
 
