@@ -60,6 +60,7 @@
             getData();
         });
 
+
         async function getData() {
             try {
                 let response = await fetch('https://v-dresevic.github.io/Advanced-JavaScript-Programming/data/students.txt');
@@ -70,20 +71,24 @@
                 var lines = textArea.value.split('\n');
                 let text = await response.text();
 
-                let name = "Name: ";
-                let address = "Address: ";
-                let phone = "Phone: ";
-                let course = "Course: ";
 
-                for (var i = 0; i < lines.length; i++) {
-                    textArea.innerHTML = name + text.split("\n")[0] + address + text.split("\n")[1] + phone + text.split("\n")[2]
-                    + course + text.split("\n")[3];
+                let array = ["Name: ", "Address: ", "Phone: ", "Course: "];
+                array.forEach(myFunction);
+
+                function myFunction(item, index) {
+                    textArea.innerHTML += array[index] + text.split("\n")[index];
+                    
                 }
 
+                /*for (var i = 0; i < lines.length; i++) {
+                    textArea.innerHTML = array[0] + text.split("\n")[0] + array[1] + text.split("\n")[1] + array[2] + text.split("\n")[2] + array[3] + text.split("\n")[3]
+                    + array[4] + text.split("\n")[4];
+                }*/
             } catch (err) {
-                textArea.innerHTML = 'Problem occurred: ' + err.message;
-            }
+            textArea.innerHTML = 'Problem occurred: ' + err.message;
         }
+        }
+
 
     </script>
 </body>
