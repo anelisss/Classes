@@ -9,18 +9,21 @@
     <style>
         #text-area {
             display: block;
-            width: 100%;
-            margin-top: 16px;
+            width: 30em;
+            height: 30em;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
+
     <button id="text-button">Get Students' Data</button>
     <textarea id="text-area" rows="35"></textarea>
     <script>
 
-        class Student {
+        /*
+                   class Student {
             constructor(name, address, phone, course) {
                 this.name = name;
                 this.address = address;
@@ -35,46 +38,45 @@
                     "Course: " + this.course
             }
         }
+     
+             let student1 = new Student("Ebonie Rangel", "7175 Yukon Street", "(" + 507 + ")" + "833" + "-" + "3567", "Geography");
+             let student2 = new Student("Keenan Ellwood", "2 Elm Lane", "(" + 894 + ")" + "831" + "-" + "6482", "History");
+             let student3 = new Student("Kailan Smart", "795 Harvard Street", "(" + 925 + ")" + "856" + "-" + "5167", "Biology");
+             let student4 = new Student("Kaydan Hirst", "9 East Lakeview Ave.", "(" + 939 + ")" + "812" + "-" + "6141", "Programming");
+             let student5 = new Student("Isabelle Prentice", "700 Rock Maple St.", "(" + 899 + ")" + "875" + "-" + "8627", "Math");
+     
+             let student1Info = student1.getInfo();
+             let student2Info = student2.getInfo();
+             let student3Info = student3.getInfo();
+             let student4Info = student3.getInfo();
+             let student5Info = student3.getInfo(); */
 
-        
 
         let button = document.getElementById("text-button");
         let textArea = document.getElementById("text-area");
+
         button.addEventListener("click", function () {
             getData();
         });
-        
 
         async function getData() {
-
-            function nameInput() {
-                return new Promise((resolve, reject) => {
-                    resolve("Name: " + "\n" + "Address: " +
-                    "\n" + "Phone: " + "\n" + "Course: " + "\n");
-                });
-            }
-
-            async function addName() {
-                let name;
-                nameInput = await nameInput();
-                return nameInput;
-
-            }
-            addName().then((result) => console.log(result));
-
             try {
                 let response = await fetch('https://v-dresevic.github.io/Advanced-JavaScript-Programming/data/students.txt');
                 if (response.status !== 200) {
-                    throw new Error("Error while reading this file.");
+                    throw new Error("Error while reading file");
                 }
-                let text = await response.text();
-                textArea.innerHTML = text;
 
-            } catch (error) {
-                textArea.innerHTML = 'Problem occurred: ' + error.message;
+                let text = await response.text();
+
+                var lines = textArea.value.split('\n');
+                for (var i = 0; i < lines.length; i++) {
+                    textArea.innerHTML = "Name: " + lines[0];
+                }
+
+            } catch (err) {
+                textArea.innerHTML = 'Problem occurred: ' + err.message;
             }
         }
-
     </script>
 </body>
 
