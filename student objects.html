@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <style>
+        #text-area {
+            display: block;
+            width: 30em;
+            height: 30em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="text-button">Get Students' Data</button>
+    <textarea id="text-area" rows="35"></textarea>
+    <script>
+
+        /*
+                   class Student {
+            constructor(name, address, phone, course) {
+                this.name = name;
+                this.address = address;
+                this.phone = phone;
+                this.course = course;
+            }
+
+            getInfo() {
+                return "Name: " + this.name + "\n" +
+                    "Address: " + this.address + "\n" +
+                    "Phone: " + this.phone + "\n" +
+                    "Course: " + this.course
+            }
+            
+        }
+     
+             let student1 = new Student("Ebonie Rangel", "7175 Yukon Street", "(" + 507 + ")" + "833" + "-" + "3567", "Geography");
+             let student2 = new Student("Keenan Ellwood", "2 Elm Lane", "(" + 894 + ")" + "831" + "-" + "6482", "History");
+             let student3 = new Student("Kailan Smart", "795 Harvard Street", "(" + 925 + ")" + "856" + "-" + "5167", "Biology");
+             let student4 = new Student("Kaydan Hirst", "9 East Lakeview Ave.", "(" + 939 + ")" + "812" + "-" + "6141", "Programming");
+             let student5 = new Student("Isabelle Prentice", "700 Rock Maple St.", "(" + 899 + ")" + "875" + "-" + "8627", "Math");
+     
+             let student1Info = student1.getInfo();
+             let student2Info = student2.getInfo();
+             let student3Info = student3.getInfo();
+             let student4Info = student3.getInfo();
+             let student5Info = student3.getInfo(); */
+
+
+        let button = document.getElementById("text-button");
+        let textArea = document.getElementById("text-area");
+
+        button.addEventListener("click", function () {
+            getData();
+        });
+
+        async function getData() {
+            try {
+                let response = await fetch('https://v-dresevic.github.io/Advanced-JavaScript-Programming/data/students.txt');
+                if (response.status !== 200) {
+                    throw new Error("Error while reading file");
+                }
+
+                var lines = textArea.value.split('\n');
+                let text = await response.text();
+
+                let name = "Name: ";
+                let address = "Address: ";
+                let phone = "Phone: ";
+                let course = "Course: ";
+
+                for (var i = 0; i < lines.length; i++) {
+                    textArea.innerHTML = name + text.split("\n")[0] + address + text.split("\n")[1] + phone + text.split("\n")[2]
+                    + course + text.split("\n")[3];
+                }
+
+            } catch (err) {
+                textArea.innerHTML = 'Problem occurred: ' + err.message;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
