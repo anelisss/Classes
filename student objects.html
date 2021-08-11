@@ -22,14 +22,12 @@
     <textarea id="text-area" rows="35"></textarea>
     <script>
 
-
         let button = document.getElementById("text-button");
         let textArea = document.getElementById("text-area");
 
         button.addEventListener("click", function () {
             getData();
         });
-
 
         async function getData() {
             try {
@@ -42,23 +40,17 @@
                 let text = await response.text();
 
 
-                let array = ["Name: ", "Address: ", "Phone: ", "Course: "];
+                let array = ["Name: ", "Address: ", "Phone: ", "Course: ", "Name: ", "Address: ", "Phone: ", "Course: ","Name: ", "Address: ", "Phone: ", "Course: ","Name: ", "Address: ", "Phone: ", "Course: ","Name: ", "Address: ", "Phone: ", "Course: "];
                 array.forEach(myFunction);
 
                 function myFunction(item, index) {
                     textArea.innerHTML += array[index] + text.split("\n")[index];
                     
                 }
-
-                /*for (var i = 0; i < lines.length; i++) {
-                    textArea.innerHTML = array[0] + text.split("\n")[0] + array[1] + text.split("\n")[1] + array[2] + text.split("\n")[2] + array[3] + text.split("\n")[3]
-                    + array[4] + text.split("\n")[4];
-                }*/
             } catch (err) {
             textArea.innerHTML = 'Problem occurred: ' + err.message;
         }
         }
-
 
     </script>
 </body>
