@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <style>
+        #text-area {
+            display: block;
+            width: 30em;
+            height: 30em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="text-button">Get Students' Data</button>
+    <textarea id="text-area" rows="35"></textarea>
+    <script>
+
+        let button = document.getElementById("text-button");
+        let textArea = document.getElementById("text-area");
+
+        button.addEventListener("click", function () {
+            getData();
+        });
+
+        async function getData() {
+            try {
+                let response = await fetch('https://v-dresevic.github.io/Advanced-JavaScript-Programming/data/students.txt');
+                if (response.status !== 200) {
+                    throw new Error("Error while reading file");
+                }
+
+                var lines = textArea.value.split('\n');
+                let text = await response.text();
+
+
+                let array = ["Name: ", "Address: ", "Phone: ", "Course: ", "Name: ", "Address: ", "Phone: ", "Course: ","Name: ", "Address: ", "Phone: ", "Course: ","Name: ", "Address: ", "Phone: ", "Course: ","Name: ", "Address: ", "Phone: ", "Course: "];
+                array.forEach(myFunction);
+
+                function myFunction(item, index) {
+                    textArea.innerHTML += array[index] + text.split("\n")[index];
+                    
+                }
+            } catch (err) {
+            textArea.innerHTML = 'Problem occurred: ' + err.message;
+        }
+        }
+
+    </script>
+</body>
+
+</html>
